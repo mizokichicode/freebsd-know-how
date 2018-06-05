@@ -42,7 +42,7 @@ mysql_enable="YES"
 rootアカウントのパスワード設定
 ---
 ### MySQL 5.6 の場合
-- MySQL 5.6 は、`root`の初期パスワードが未設定のため必ず設定します
+- MySQL 5.6 は、`root`の初期パスワードが未設定のため必ず設定します
 
 ```
 #> mysql -u root
