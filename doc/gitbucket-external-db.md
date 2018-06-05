@@ -1,16 +1,16 @@
-# GitBucket 外部DBへの変更
-
+GitBucket 外部DBへの変更
+===
 GitBucket で外部データベースを使用する手順を説明します。
 
-* 外部データベースとして`MySQL`を使用します。
-* `Tomcat 8`がインストールされている環境を想定しています。
+- 外部データベースとして`MySQL`を使用します。
+- `Tomcat 8`がインストールされている環境を想定しています。
 
-## MySQL のセットアップ
-
+MySQL のセットアップ
+---
 ### インストール
 
-* **pkg** コマンドでインストールします。
-* GitBucket では、MySQL 5.7 以上が必要です。
+- **pkg** コマンドでインストールします。
+- GitBucket では、MySQL 5.7 以上が必要です。
 
 ```
 #> pkg install mysql57-server
@@ -23,8 +23,7 @@ GitBucket で外部データベースを使用する手順を説明します。
 ```
 
 ### 文字コード設定
-
-* MySQL 内で、`UTF-8`を使用するように設定します。
+- MySQL 内で、`UTF-8`を使用するように設定します。
 
 `/usr/local/etc/mysql/my.cnf`へ、以下の記述を追加します。
 
@@ -52,9 +51,8 @@ mysql_enable="YES"
 `#> service mysql-server start`
 
 ### ログイン
-
-* `root` アカウントの初期パスワードは、`/root/.mysql_secret` に記載されています。
-* `root` アカウントのパスワード変更は割愛します。
+- `root` アカウントの初期パスワードは、`/root/.mysql_secret` に記載されています。
+- `root` アカウントのパスワード変更は割愛します。
 
 ```
 #> mysql -u root -p
