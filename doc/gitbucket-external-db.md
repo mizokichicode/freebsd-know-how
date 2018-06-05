@@ -7,57 +7,7 @@ GitBucket で外部データベースを使用する手順を説明します。
 
 MySQL のセットアップ
 ---
-### インストール
-
-- **pkg** コマンドでインストールします。
-- GitBucket では、MySQL 5.7 以上が必要です。
-
-```
-#> pkg install mysql57-server
- :
- :
-#> pkg install mysql-connector-java
- :
- :
-#> cp /usr/local/share/java/classes/mysql-connector-java.jar /usr/local/apache-tomcat-8.0/lib/
-```
-
-### 文字コード設定
-- MySQL 内で、`UTF-8`を使用するように設定します。
-
-`/usr/local/etc/mysql/my.cnf`へ、以下の記述を追加します。
-
-```
-[client]
- :
-default-character-set = utf8
-
-[mysqld]
- :
- :
-character-set-server = utf8
-```
-
-### 起動設定
-
-`/etc/rc.conf` へ、以下の記述を追加します。
-
-```
-mysql_enable="YES"
-```
-
-設定を追記後に、サービスを起動します。
-
-`#> service mysql-server start`
-
-### ログイン
-- `root` アカウントの初期パスワードは、`/root/.mysql_secret` に記載されています。
-- `root` アカウントのパスワード変更は割愛します。
-
-```
-#> mysql -u root -p
-Enter password:
-```
+- MySQLの初期セットアップは[こちら](./mysql.md)を参照してください
 
 ### データベース作成
 
