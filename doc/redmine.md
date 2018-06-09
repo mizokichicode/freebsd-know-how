@@ -59,7 +59,7 @@ production:
 #> cd /usr/local/www/redmine
 #> mkdir -p ./tmp/pdf ./public/plugin_assets
 #> chown -R www:www ./files ./log ./tmp ./public/plugin_assets
-#> chmow -R 755 ./files ./log ./tmp ./public/plugin_assets
+#> chmod -R 755 ./files ./log ./tmp ./public/plugin_assets
 ```
 
 ### 動作確認
