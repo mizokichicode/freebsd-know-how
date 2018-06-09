@@ -46,9 +46,9 @@ root アカウントのパスワード設定
 - `MariaDB` は rootアカウントの初期パスワードが未設定のため必ず設定します
 ```
 #> mysql -u root
-mysql> update mysql.user set password=password('xxxxx') where user='root';
-mysql> flush privileges;
-mysql> exit;
+MariaDB [(none)]> update mysql.user set password=password('xxxxx') where user='root';
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> exit;
 #>
 ```
 
