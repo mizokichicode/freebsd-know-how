@@ -52,3 +52,10 @@ MariaDB [(none)]> exit;
 #>
 ```
 
+リカバリ
+---
+- `MariaDB` が起動しなくなった場合のリカバリ方法
+- `MariaDB` が起動しない場合、`/var/db/mysql/<hostname>.err` を参照して原因を確認します
+```
+#> mysqld_safe --wsrep-recover --tc-heuristic-recover rollback
+```
