@@ -89,3 +89,29 @@
 #> echo 'nameserver xxx.xxx.xxx.xxx' >> /mnt/etc/resolv.conf
 ```
 
+再起動
+---
+- 一通りのセットアップが完了したらシステムを再起動します
+
+```
+#> umount /mnt
+#> shutdown -r now
+```
+
+タイムゾーン・NTP設定
+---
+- システム再起動後に設定します
+
+### タイムゾーンの設定
+
+```
+#> tzsetup
+```
+
+### NTPの設定
+
+```
+#> echo 'ntpdate_enable="YES"' >> /etc/rc.conf
+#> echo 'ntpdate_flags="-sbv ntp.jst.mfeed.ad.jp"' >> /etc/rc.conf
+#> service ntpdate onestart     ← 時刻同期を実行
+```
