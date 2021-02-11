@@ -75,7 +75,6 @@
 
 ```
 # gpart add -a 4k -t efi -s 512m ada0
-# gpart add -a 4k -t freebsd-boot -s 512k ada0
 # gpart add -a 4k -t freebsd-zfs -s 40g ada0
 # gpart add -a 4k -t freebsd-swap ada0
 ```
