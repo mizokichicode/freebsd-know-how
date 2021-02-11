@@ -129,7 +129,7 @@
 
 #### 6-1. ZFS用ブートファイルシステムの設定
 
-- ZFS用プールへブートダイルシステムを設定します
+- ZFS用プールへブートファイルシステムを設定します
 
 ```
 # zpool set bootfs=zroot/ROOT/default zroot
