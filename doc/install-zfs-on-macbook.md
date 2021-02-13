@@ -10,7 +10,8 @@
 環境
 ---
 
-- macOS Catalina (macOS 11.1)
+- macOS Big Sur (Ver.11.2.x)
+- macOS Catalina (Ver.10.15.x)
 - FreeBSD 12.2 RELEASE
 
 
@@ -70,13 +71,16 @@
 |ada0p1|efi|200M|macOS用ブート領域 (UEFI)|
 |ada0p2|apple-apfs|56G|macOS用APFS領域|
 |ada0p3|efi|512M|FreeBSD用ブート領域 (UEFI)|
-|ada0p4|freebsd-zfs|40G|FreeBSD用ZFS領域|
+|ada0p4|freebsd-boot|512k|FreeBSD用ブート領域 (BIOS)|
 |ada0p5|freebsd-swap|16G|FreeBSD用スワップ領域|
+|ada0p6|freebsd-zfs|40G|FreeBSD用ZFS領域|
+
 
 ```
 # gpart add -a 4k -t efi -s 512m ada0
-# gpart add -a 4k -t freebsd-zfs -s 40g ada0
+# gpart add -a 4k -t freebsd-boot -s 512k ada0
 # gpart add -a 4k -t freebsd-swap ada0
+# gpart add -a 4k -t freebsd-zfs -s 40g ada0
 ```
 
 ### 4. ZFSプール作成
@@ -86,7 +90,7 @@
 - mountpoint、compression、atime、normalization の各オプションを指定する場合は、`-O` (大文字の`O`)を指定する
 
 ```
-# zpool create -o altroot=/mnt -o cachefile=/tmp/zpool.cache -O mountpoint=none -O compression=lz4 -O atime=off -O normalization=formC zroot ada0p4
+# zpool create -o altroot=/mnt -o cachefile=/tmp/zpool.cache -O mountpoint=none -O compression=lz4 -O atime=off -O normalization=formD -O uft8only=on zroot ada0p6
 ```
 
 ### 5. ZFSの作成
@@ -108,6 +112,7 @@
 # zfs create -o mountpoint=/usr/home zroot/usr/home
 # zfs create -o mountpoint=/usr/ports -o compression=gzip-9 -o setuid=off zroot/usr/ports
 # zfs create -o mountpoint=/usr/src -o compression=gzip-9 zroot/usr/src
+# zfs create -o mountpoint=/usr/obj zroot/usr/obj
 # zfs create -o mountpoint=/var zroot/var
 # zfs create -o mountpoint=/var/audit -o exec=off -o setuid=off zroot/var/audit
 # zfs create -o mountpoint=/var/crash -o exec=off -o setuid=off zroot/var/crash
@@ -162,7 +167,6 @@
 # vi /etc/fstab
 -----------------------------------------------------------------------------
 /dev/ada0p5    none    swap    sw    0    0
-
 -----------------------------------------------------------------------------
 
 # echo 'zfs_enable="YES"' >> /etc/rc.conf
